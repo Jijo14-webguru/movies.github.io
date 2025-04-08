@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* change to auto if you want scrolling */
+  }
+  
+  .fullscreen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(33.33%, 1fr));
+    grid-auto-rows: 33.33vh;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .video:hover {
+    transform: scale(1.03);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+  

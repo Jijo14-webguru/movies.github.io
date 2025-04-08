@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Series tasiler</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+      background: #000;
+    }
+
+    .fullscreen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(33.33%, 1fr));
+      grid-auto-rows: 33.33vh;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .video-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .poster {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .video-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+
+    .video-wrapper:hover .poster {
+      opacity: 0;
+    }
+
+    .video-wrapper:hover .video-iframe {
+      transform: scale(1.02);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="fullscreen-grid">
+    <!-- Video 1 -->
+    <div class="video-wrapper">
+        <img class="poster" src="https://img.youtube.com/vi/_InqQJRqGW4/maxresdefault.jpg" alt="Money Heist">
+        <iframe class="video-iframe" src="https://www.youtube.com/embed/_InqQJRqGW4?enablejsapi=1&rel=0&controls=1" allowfullscreen></iframe>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-wrapper">
+        <img class="poster" src="https://img.youtube.com/vi/UWMzKXsY9A4/maxresdefault.jpg" alt="Bad Boys Ride or Die">
+        <iframe class="video-iframe" src="https://www.youtube.com/embed/UWMzKXsY9A4?enablejsapi=1&rel=0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-wrapper">
+        <img class="poster" src="https://img.youtube.com/vi/sfAc2U20uyg/maxresdefault.jpg" alt="The Walking Dead">
+        <iframe class="video-iframe" src="https://www.youtube.com/embed/sfAc2U20uyg?enablejsapi=1&rel=0&controls=1" allowfullscreen></iframe>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="video-wrapper">
+      <img class="poster" src="https://img.youtube.com/vi/LhRXf-yEQqA/maxresdefault.jpg" alt="Kingdom">
+      <iframe class="video-iframe" src="https://www.youtube.com/embed/LhRXf-yEQqA?enablejsapi=1&rel=0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Video 5 -->
+    <div class="video-wrapper">
+      <img class="poster" src="https://img.youtube.com/vi/73_1biulkYk/maxresdefault.jpg" alt="Deadpool & Wolverine">
+      <iframe class="video-iframe" src="https://www.youtube.com/embed/73_1biulkYk?enablejsapi=1&rel=0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Video 6 -->
+    <div class="video-wrapper">
+      <img class="poster" src="https://img.youtube.com/vi/32RAq6JzY-w/maxresdefault.jpg" alt="Frozen 2">
+      <iframe class="video-iframe" src="https://www.youtube.com/embed/32RAq6JzY-w?enablejsapi=1&rel=0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Video 7 -->
+<div class="video-wrapper">
+    <img class="poster" src="https://img.youtube.com/vi/HhesaQXLuRY/maxresdefault.jpg" alt="Breaking Bad">
+    <iframe class="video-iframe" src="https://www.youtube.com/embed/HhesaQXLuRY?enablejsapi=1&rel=0&controls=1" allowfullscreen></iframe>
+  </div>
+  
+  <!-- Video 8 -->
+  <div class="video-wrapper">
+    <img class="poster" src="https://img.youtube.com/vi/5hAXVqrljbs/maxresdefault.jpg" alt="Ozark">
+    <iframe class="video-iframe" src="https://www.youtube.com/embed/5hAXVqrljbs?enablejsapi=1&rel=0&controls=1" allowfullscreen></iframe>
+  </div>
+  
+  <!-- Video 9 -->
+  <div class="video-wrapper">
+    <img class="poster" src="https://img.youtube.com/vi/0yCoLNmhJWM/maxresdefault.jpg" alt="Snowfall">
+    <iframe class="video-iframe" src="https://www.youtube.com/embed/0yCoLNmhJWM?enablejsapi=1&rel=0&controls=1" allowfullscreen></iframe>
+  </div>
+  </div>
+
+  <!-- YouTube API and hover controls -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    const players = [];
+
+    function onYouTubeIframeAPIReady() {
+      document.querySelectorAll('.video-iframe').forEach((iframe, index) => {
+        const player = new YT.Player(iframe, {
+          events: {
+            'onReady': () => {
+              const wrapper = iframe.parentElement;
+              wrapper.addEventListener('mouseenter', () => {
+                player.mute();
+                player.playVideo();
+              });
+              wrapper.addEventListener('mouseleave', () => {
+                player.pauseVideo();
+              });
+            }
+          }
+        });
+        players.push(player);
+      });
+    }
+  </script>
+</body>
+</html>
